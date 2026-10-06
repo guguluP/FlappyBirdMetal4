@@ -17,6 +17,9 @@ struct ContentView: View {
                 phase: $phase
             )
             .ignoresSafeArea()
+            .accessibilityLabel("Playfield")
+            .accessibilityHint("Tap to flap")
+            .accessibilityAddTraits(.allowsDirectInteraction)
 
             VStack(spacing: 0) {
                 topHUD
@@ -67,6 +70,8 @@ struct ContentView: View {
                     .shadow(color: .black.opacity(0.45), radius: 2, y: 1)
                     .minimumScaleFactor(0.7)
                     .lineLimit(1)
+                    .accessibilityLabel("Score")
+                    .accessibilityValue("\(score)")
 
                 Spacer(minLength: 4)
 
@@ -74,6 +79,8 @@ struct ContentView: View {
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundStyle(Color(red: 1, green: 0.84, blue: 0.2))
                     .shadow(color: .black.opacity(0.45), radius: 2, y: 1)
+                    .accessibilityLabel("Coins")
+                    .accessibilityValue("\(coins)")
 
                 Spacer(minLength: 4)
 
@@ -83,6 +90,8 @@ struct ContentView: View {
                     .shadow(color: .black.opacity(0.45), radius: 2, y: 1)
                     .minimumScaleFactor(0.7)
                     .lineLimit(1)
+                    .accessibilityLabel("Best score")
+                    .accessibilityValue("\(highScore)")
             }
 
             if coach.isAppleIntelligenceAvailable {
@@ -107,6 +116,7 @@ struct ContentView: View {
                 .font(.system(size: 32, weight: .black, design: .rounded))
                 .foregroundStyle(.white)
                 .multilineTextAlignment(.center)
+                .accessibilityAddTraits(.isHeader)
 
             Text(subtitleText)
                 .font(.system(size: 15, weight: .semibold, design: .rounded))
@@ -161,6 +171,8 @@ struct ContentView: View {
                 .foregroundStyle(.white.opacity(0.95))
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .accessibilityLabel("Coach tip")
+                .accessibilityValue(coach.coachLine)
 
             if case .unavailable(let reason) = coach.supportState, phase == .ready {
                 Text(reason)

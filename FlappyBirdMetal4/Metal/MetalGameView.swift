@@ -49,6 +49,7 @@ struct MetalGameViewRepresentable: NSViewRepresentable {
 
     func updateNSView(_ nsView: InteractiveMTKView, context: Context) {}
 
+    @MainActor
     final class Coordinator: NSObject, MTKViewDelegate {
         var renderer: Metal4Renderer?
         private var score: Binding<Int>
@@ -164,6 +165,7 @@ struct MetalGameViewRepresentable: UIViewRepresentable {
 
     func updateUIView(_ uiView: InteractiveMTKView, context: Context) {}
 
+    @MainActor
     final class Coordinator: NSObject {
         var renderer: Metal4Renderer?
         private var score: Binding<Int>

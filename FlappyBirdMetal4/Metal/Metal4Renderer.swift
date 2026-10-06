@@ -28,6 +28,7 @@ struct FrameUniforms {
 /// - **Mac + iPhone device:** full **Metal 4** path.
 /// - **iOS Simulator:** classic Metal path (Metal 4 stubs).
 /// Geometry is true 3D meshes (extruded pipes, low-poly bird character, coins, particles).
+@MainActor
 final class Metal4Renderer: NSObject, MTKViewDelegate {
     private let device: MTLDevice
 
